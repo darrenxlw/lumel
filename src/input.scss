@@ -1,0 +1,221 @@
+$lte: #FFFEFC;
+$prp: #8480C2;
+
+@mixin animate($anim-prop){
+	animation: $anim-prop;
+}
+@keyframes pop{
+	from{font-size: 2em;}
+	to{font-size: 4em;}
+}
+@keyframes flicker{
+	0%{opacity: 0;}
+	10%{opacity: 1;}
+	20%{opacity: 0;}
+	30%{opacity: 0.5;}
+	40%{opacity: 1;}
+	50%{opacity: 0;}
+	60%{opacity: 0.5;}
+	70%{opacity: 0;}
+	80%{opacity: 1;}
+	90%{opacity: 0;}
+	100%{opacity: 1;}
+}
+@keyframes flicker-in{
+	0%{opacity: 0;}
+	100%{opacity: 1;}
+}
+
+@keyframes fadeout{
+	from{opacity: 1;}
+	to{opacity: 0;}
+}
+
+@keyframes correct{
+	from{color: chartreuse}
+	to{color: black}
+}
+@keyframes false{
+	from{color: crimson}
+	to{color: black}
+}
+
+
+html, body{
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+	margin: 0;
+}
+
+#app{
+	width: 100%;
+	height: 100%;
+	background: $lte;
+	#content{
+		width: 100%;
+		height: 100%;
+		position: relative;
+		font-family: 'Cabin Sketch', cursive;
+		#help-button{
+			position: absolute; 
+			border-radius: 50%;
+			top: 12px;
+			right: 12px;
+			width: 24px;
+			height: 24px;
+			border: 2px solid black;
+			background: $lte;
+			text-align: center;
+			font-family: 'Cabin Sketch', cursive;
+			opacity: 0.6;
+			&:hover{opacity: 1;}
+		}
+		#landing{
+			height: 100%;
+			width: 100%;
+			display: table;
+			.landing-content{
+				width: 100%;
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+				h1{
+					font-family: 'Amatic SC', cursive;
+					width: 100%;
+					position: relative;
+					top: -24px;
+					font-size: 4em;
+					font-weight: normal;
+					margin: 0;
+					.letters-1{@include animate(flicker 2s ease-out 2);}
+					.letters-2{@include animate(flicker 3s ease-in 1s 1);}
+					.letters-3{@include animate(flicker 4s ease-out 1);}
+					.letters-4{@include animate(flicker 1s linear 2s 3);}
+					.letters-5{@include animate(flicker 2s linear 3s 1);}
+					&::first-letter{color: $prp;}
+				}
+				#start-button{
+					opacity: 0;
+					@include animate(flicker-in 2s forwards);
+					font-family: 'Cabin Sketch', cursive;
+					background: white;
+					border: 2px solid black;
+					border-radius: 2px;
+					cursor: pointer;
+					font-size: 1.5em;
+					&:hover{background: $prp;}
+					padding: 6px 16px;
+				}
+			}
+		}
+
+		#countdown-window{
+			height: 100%;
+			width: 100%;
+			display: table;
+			h1{
+				display: table-cell; margin: 0; vertical-align: middle; text-align: center;
+				
+			}
+		}
+		#play-area{
+			width: 100%;
+			height: 100%;
+			.pull-right{float: right; margin: 0 42px;}
+			#play-field{
+				width: 90%;
+				height: 88%;
+				position: relative;
+				left: 5%;
+				.ball{
+					border: 4px solid black;
+					width: 48px;
+					height: 48px;
+					border-radius: 50%;
+					position: absolute;
+					display: table;
+					cursor: pointer;
+					.number{
+						display: table-cell; width: 100%; text-align: center; vertical-align: middle; font-size: 2em;
+						@include animate(fadeout 1s 1s forwards);
+						&::selection{background: inherit; color: inherit;}
+					}
+				}
+			}
+			#redo{
+				position: absolute; 
+				bottom: 0; 
+				right: 0; 
+				opacity: 0.6;
+				color: inherit;
+				background: inherit;
+				cursor: pointer;
+				border: none;
+				&:hover{opacity: 1;}
+				i{
+					font-size: 28px;
+					width: 28px; 
+					height: 28px;
+				}
+			}
+		}
+		#result-sheet{
+			width: 100%;
+			height: 100%;
+			display: table;
+			.vertical-align{
+				width: 100%;
+				display: table-cell; 
+				vertical-align: middle;
+				.flex-wrapper{
+					display: flex;
+					width: 100%;
+					.stat-container{
+						flex: 0 1 620px;
+						margin: 42px auto;
+						#start-again{
+							font-family: 'Cabin Sketch', cursive;
+							display: block;
+							background: white;
+							border: 2px solid black;
+							border-radius: 2px;
+							cursor: pointer;
+							font-size: 1.5em;
+							&:hover{background: $prp;}
+							padding: 6px 16px;
+							margin: 24px 40px;
+						}
+						ul{list-style-type: none;}
+					}
+				}
+			}			
+		}
+		#dialog-wrapper{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			display: flex;
+			#dialog-window{
+				z-index: 1;
+				height: 100%;
+				width: 100%;
+				background: black;
+				opacity: 0.8;
+			}
+			#help-dialog{
+				position: fixed;
+				width: 620px;
+				padding: 24px;
+				top: 8%;
+			  	left: 50%;
+			  	margin-left: -310px;
+				z-index: 10;
+				background: $lte;
+				ul{list-style-type: none; li{margin: 2px 0; &::first-letter{color: $prp; font-size: 1.5em;}}}
+			}
+		}
+	}
+}
