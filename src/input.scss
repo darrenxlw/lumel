@@ -70,6 +70,7 @@ html, body{
 			font-family: 'Cabin Sketch', cursive;
 			opacity: 0.6;
 			&:hover{opacity: 1;}
+			&:focus{outline: none; background: $prp;}
 		}
 		#landing{
 			height: 100%;
@@ -206,15 +207,22 @@ html, body{
 				opacity: 0.8;
 			}
 			#help-dialog{
-				position: fixed;
-				width: 620px;
+				max-width: 620px;
 				padding: 24px;
-				top: 8%;
-			  	left: 50%;
-			  	margin-left: -310px;
+				position: absolute;
+				left: 0;
+				right: 0;
+				margin: 10vh auto;
 				z-index: 10;
 				background: $lte;
 				ul{list-style-type: none; li{margin: 2px 0; &::first-letter{color: $prp; font-size: 1.5em;}}}
+				#close-dialog{position: absolute; right: 8px; top: 8px; color: lightsteelblue; cursor: pointer;}
+			}
+			@media screen and (max-width: 480px) {
+			    #help-dialog{
+					margin: 5vh auto;
+					ul{padding: 0;}
+				}
 			}
 		}
 	}

@@ -81,6 +81,7 @@ var Layout = React.createClass({
 							<li>You have 30 seconds to click through as many as you can!</li>
 							<li>The score is awarded proportionally to the length of the number series and the amount you of correct plays in a row.</li>
 						</ul>
+						<div id="close-dialog" onClick={()=>this.toggleDialog()}><i className="material-icons">clear</i></div>
 					</div>
 				</div>
 			);
@@ -160,7 +161,7 @@ var Play = React.createClass({
 			if(tmp.length==this.state.ball.length){
 				if(_.isEqual(tmp, this.state.ball)){
 					var combono = this.state.combo+1;
-					this.props.addScore(100*(this.state.ball.length)+parseInt(this.state.combo/3), this.state.ball.length);
+					this.props.addScore(100*((this.state.ball.length)+parseInt(this.state.combo/3)), this.state.ball.length);
 					tmp = this.state.ball;
 					tmp.push(_.max(tmp)+1);
 					var tmp2 = _.map(this.state.key, function(n){
