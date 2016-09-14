@@ -79,7 +79,8 @@ var Layout = React.createClass({
 							<li>If you misclicked, you can undo your current clicks in the bottom right corner.</li>
 							<li>If you are unsure and want to skip, just click the remaining uncolored circles.</li>
 							<li>You have 30 seconds to click through as many as you can!</li>
-							<li>The score is awarded proportionally to the length of the number series and the amount you of correct plays in a row.</li>
+							<li>The score is awarded proportionally to the length of the number series and the amount of successful clickthroughs without misplays.</li>
+							<li>Fork on <a href="https://github.com/dxlw/lumel">Github</a></li>
 						</ul>
 						<div id="close-dialog" onClick={()=>this.toggleDialog()}><i className="material-icons">clear</i></div>
 					</div>
